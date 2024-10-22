@@ -1,0 +1,113 @@
+//node creation
+class Node{
+    int data;
+    Node next;//data address can be any type so consider node as datatype
+}
+
+
+public class Main
+{
+    static Node head;
+    static void Create(int data){
+        if(head==null){
+            head=new Node();
+            head.data=data;
+            head.next=null;
+        }
+        else{
+            Node temp=head;
+            Node newnode=new Node();
+            newnode.data=data;
+            newnode.next=null;
+            while(temp.next!=null){
+                temp=temp.next;
+                
+            }
+            temp.next=newnode;
+        }
+    }
+    static void display(){
+        if(head==null){
+            System.out.println("memory was not created");
+            
+        }
+        else{
+            Node temp=head;
+            while(temp!=null){
+                System.out.println(temp.data);
+                temp=temp.next;
+            }
+        }
+    }
+    //insert begining
+    static void insertbeg(int data){
+        Node newnode=new Node();
+        newnode.data=data;
+        newnode.next=head;
+        head=newnode;
+    }
+    //insert at end
+    static void insertend(int data){
+        Node temp=head;
+            Node newnode=new Node();
+            newnode.data=data;
+            newnode.next=null;
+            while(temp.next!=null){
+                temp=temp.next;
+                
+            }
+            temp.next=newnode;
+        
+    }
+    //insert at any position
+    static void insertpos(int data,int pos){
+        Node newnode=new Node();
+        newnode.data=data;
+        newnode.next=null;
+        Node temp=head;
+        for(int i=1;i<pos-1;i++){
+            temp=temp.next;
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+        
+    }
+    //delete begining
+    static void delbeg(){
+        Node temp=head;
+        head=head.next;
+        temp=null;
+    }
+    //delete at end
+    static void delend(){
+        Node temp=head;
+        Node temp1=head;
+        while(temp1.next!=null){
+            temp=temp1;
+            temp1=temp1.next;
+        }
+        temp.next=null;
+    }
+    //delete at position
+    static void delpos(int pos){
+        Node temp=head;
+        for(int i=0;i<pos-1;i++){
+            temp=temp.next;
+        }
+        temp.next=temp.next.next;
+    }
+	public static void main(String[] args) {
+	    Create(10);
+	    Create(20);
+	    Create(30);
+	    Create(40);
+	    insertbeg(50);
+	    insertend(60);
+	    insertpos(70,2);
+	    delbeg();
+	    delend();
+	    delpos(2);
+	    display();
+		
+	}
+}
